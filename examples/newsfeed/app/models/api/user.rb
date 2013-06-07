@@ -14,6 +14,7 @@ class Api::User
   end
 
   operation :create do
+    desc 'Creates a new user'
     url '/:username'
 
     input do
@@ -24,6 +25,7 @@ class Api::User
   end
 
   operation :follow do
+    desc 'Follows another user'
     url '/:username/follow/:following_username'
     verb :post
 
@@ -39,10 +41,12 @@ class Api::User
   end
 
   operation :index do
+    desc 'List all users'
     output(:list) { username as: [:user, :username] }
   end
 
   operation :show do
+    desc 'Display a user'
     url '/:username'
     input { string :username, uri: true, required: true }
     output :user
